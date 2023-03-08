@@ -1,0 +1,142 @@
+<html lang="en">
+
+<head>
+<title>Ad-Hoc Distributed Microphone Clusters</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="style.css">
+
+
+<script async src="https://api.countapi.xyz/hit/users.ugent.be.sbkindt/8b105b38-541a-4616-9d13-2e299e3f9fd3?callback=websiteVisits"></script>
+
+<script type = "text/javascript">
+
+	function websiteVisits(response) {
+		document.querySelector("#visits").textContent = response.value;
+	}
+	
+	  function displayNextImage() {
+		  document.getElementById("feature_type_button").innerHTML = 'switch to ' + names[x];
+		  x = (x === images.length - 1) ? 0 : x + 1;
+		  document.getElementById("img").src = images[x];
+		  document.getElementById("aud").src = audios[x];
+		  document.getElementById("feature_type_name").innerHTML = names[x];
+	  }
+
+	  var images = [], names = [], audios = [], x = 1;
+	  images[0] = "./low_rev_img/DSB_MFCC_source_0.png";
+	  images[1] = "./low_rev_img/DSB_sp_ver_source_0.png";
+	  
+	  names[0] = "Mod-MFCC";
+	  names[1] = "Speaker Embedding";
+	  
+	  audios[0] = "./low_rev_audio/DSB_MFCC_source_0.wav";
+	  audios[1] = "./low_rev_audio/DSB_sp_ver_source_0.wav";
+
+  </script>
+  
+  
+</head>
+
+<!-- <body onload = "startTimer()"> -->
+<!-- <body class="own-body" onload = "displayNextImage()"> -->
+<body class="own-body">
+
+<div class="navbar">
+   <div class="row">
+    <div class="logo" ><img src=".\img\logo_ugent_nl.svg"></div>
+    <div class="banner">
+      <h1 class="closer">ASPIRE</h1>
+      <p class="closer" style="font-size: 65%;">Audio and Signal Processing, Interpretation, and Enhancement @IDLAB</p>
+    </div>
+	 <div>
+	<a href="./index.html"><div class="row"><i class="material-icons">home</i> <div style= "padding: 0px 10px" >Home</div></div></a>
+	<div class="dropdown">
+	<a> <div class="row"> <i class="material-icons">menu</i> <div style= "padding: 0px 10px" >Menu</div></div></a>
+	<div class="dropdown-content">
+		<a href="./low_rev.html">low reverb</a>
+		<a href="./norm_rev.html">normal reverb</a>
+		<a href="./closely_low_reverb.html">closer spaced low reverb</a>
+		<a href="./closely_normal_reverb.html">closely spaced normal reverb</a>
+		<a href="./overlap.html">overlapping critical distances</a>
+	 </div>
+	 </div>
+	 </div>
+  
+  </div>
+</div>
+ 
+ <div class="center-content">
+ 
+ </br>
+ 
+<em>These are examples to support our ICASSP 2023 paper under review. </em>
+<br/>
+<br/>
+Reference: <br/><code>@{Exploiting speaker embeddings for improved microphone clustering and speech separation in ad-hoc microphone arrays}</code>
+<br/>
+<h1>Goal </h1>
+We have ad-hoc distributed microphones and two concurrent speakers places in a room. We want to <b>cluster</b> the microphones in three clusters: one for each speaker and one background cluster.
+We compare the Mod-MFCC based clustering features with <b>our proposed speaker embedding features</b>. Both are clustered using fuzzy-C-means clustering.
+With these clusters, we perform <b>speech separation</b> by first generating a rough estimate via masking. This estimate is then used to estimate the relative delays,
+which are then compensated for during delay and sum beamforming (DBS).
+<br/>	
+
+ 
+ <div>
+<h1>Setup </h1>
+
+For the examples, we simulated different room sizes and reverberation times. 2 sources are places in the room. Then 15 microphones are randomly placed with the constraint that at least 3 microphones are within the critical distances of each source.
+An example room and cluster is plotted below, where the sources are the green crosses, the critical distances is indicated by the green circles and the microphones are indicated with black dots. 
+For the clustering, microphones with darker purple color belong to the same cluster, while light blue dots are microphones not belonging to that cluster.
+Note that the critical distances will change dependant on the room size and the revereration time of the room.
+<br/>
+<br/>
+
+ <div class="row">
+  <div class="column">
+    <img class='room-img', src="./low_rev_img/room_new.png" alt="Room" >
+  </div>
+  <div class="column">
+    <img class ="room-img", src="./low_rev_img/sp_ver_clusters_0.png" alt="SpVer Clusters image" >
+  </div>
+</div> 
+
+
+
+
+
+<h1>Evaluation </h1>
+To compare between Mod-MFCC based features and the Speaker Embeddings, we will show the following:<br/>
+<ol>
+  <li>What the cluster are</li>
+  <li>Audio of the chosen reference microphone signals</li>
+  <li>Audio of the masked reference microphone signals, which will be used to time-align the signals</li>
+  <li>Audio of the DSB output for the clusters</li>
+</ol> 
+
+<h1>Cases </h1>
+
+We have 5 different examples with different room sizes and reverberation times; and where sources are closer or farther separated from each other.<br/>
+
+The first two examples are with sources that are relatively far from each other:
+
+<ol>
+  <li> <a href="./low_rev.html">with low reverberation time of 0.2 seconds</a> </li>
+  <li> <a href="./norm_rev.html">with normal reverberation time of 0.5 seconds</a> </li>
+</ol> 
+
+<!-- <b style="color:#FF0000; font-size: 30px;"><u>Extra experiments supporting rebuttal</u></b><br/> -->
+The last three examples are <b style="color:#FF0000;">extra challenging</b> with sources that are closer to each other:
+
+<ol start="3">
+  <li> <a href="./closely_low_reverb.html">with modest reverberation time of 0.3 seconds</a> </li>
+  <li> <a href="./closely_normal_reverb.html">with normal reverberation time of 0.5 seconds</a> </li>
+  <li> <a href="./overlap.html">with overlapping critical distances in modest reverberant conditions of 0.3 seconds</a> </li>
+</ol> 
+
+</div>
+
+
+</body>

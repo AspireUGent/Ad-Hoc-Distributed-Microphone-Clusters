@@ -1,0 +1,236 @@
+<html lang="en">
+
+<head>
+<title>Ad-Hoc Distributed Microphone Clusters</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<style>
+
+.center-content {
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 125px;
+  background: white;
+  padding: 10px;
+}
+
+.feature-button{
+	width: 300px
+}
+
+figure { display: table; }
+
+
+figcaption { display: table-caption; caption-side: bottom ; }
+
+  .logo{
+    margin-left: 5px;
+    float: left;
+  }
+  
+  .banner{
+    color: #3265C2;
+    /*background-color: #3265C2;*/
+    margin-left: 2%;
+	margin-right: 4%;
+    float: left;
+  }
+
+  .cluster-row:after {
+    content: "";
+    display: flex;
+    clear: both;
+  }
+  
+.cluster-column {
+  float: left;
+  width: 33.33%;
+  padding: 0px;
+}
+
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+} 
+
+.cluster-text{
+	float: left;
+	width: 33.33%;
+	padding: 0px;
+	align:center;
+	bold;
+}
+
+  .case{
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+ .cluster-img {
+	  object-fit:fill;
+	  max-width: 100%;
+	  height: auto;
+	  max-height: 600px;
+}
+
+ .example-div {
+	  margin-left: auto;
+      margin-right: auto;
+	  max-width: 65%;
+}
+
+ .example-img {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  max-width: 100%;
+	  height: auto;
+	  max-height: 600px;
+}
+
+ .room-img {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  max-width: 100%;
+	  height: auto;
+	  max-height: 400;
+}
+
+ .spectogram-img {
+	  object-fit:fill;
+	  max-width: 100%;
+	  height: auto;
+	  max-height: 400px;
+	  padding: 0px 0px 0px 0px;
+	  
+}
+
+ .spectogram-aud {
+	width: 100%;
+	padding: 4px 4px 4px 0px;
+}​
+
+th, td {
+   padding: 8px 2000px 8px 8px;
+}
+
+.double-lined{
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.closer { 
+    line-height: 10px;
+  }
+  
+  .navbar {
+  overflow: hidden;
+  background-color: #a3c5f1;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding:0;
+  width: 100%;
+  height:90px
+  text-align: center;
+}
+
+.navbar a {
+  <!-- height: 100%; -->
+  height: 2000px;
+  float: left;
+  display: block;
+  color: #3265C2;
+  text-align: center;
+  padding: 28px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  background: #3265C2;
+  color: black;
+}
+
+.own-body{
+	margin: 0;
+	padding:0;
+}
+
+</style>
+
+<script async src="https://api.countapi.xyz/get/users.ugent.be.sbkindt/8b105b38-541a-4616-9d13-2e299e3f9fd3?callback=websiteVisits"></script>
+
+<script type = "text/javascript">
+
+	function websiteVisits(response) {
+		<!-- document.getElementById("visits").textContent = responce.value; -->
+		document.querySelector("#visits").textContent = response.value;
+	}
+	
+	async function getAPI(url){
+		const response = await fetch(url);
+		var data = await response.json();
+		<!-- console.log(data); -->
+		console.log(data.value);
+		return data.value
+    }
+	
+	const sleep = async (milliseconds) => {
+    await new Promise(resolve => {
+        return setTimeout(resolve, milliseconds)
+    });
+};
+	
+	async function clicked() {
+		fetch("https://api.countapi.xyz/set/users.ugent.be.sbkindt/8b105b38-541a-4616-9d13-2e299e3f9fd3?value=0");
+		await sleep(1000);
+		const response = await fetch("https://api.countapi.xyz/get/users.ugent.be.sbkindt/8b105b38-541a-4616-9d13-2e299e3f9fd3");
+		var data = await response.json();
+		amountVisits = data.value;
+		document.getElementById("visits").innerHTML = amountVisits;
+	}
+	
+	  function displayNextImage() {
+		  document.getElementById("feature_type_button").innerHTML = 'switch to ' + names[x];
+		  x = (x === images.length - 1) ? 0 : x + 1;
+		  document.getElementById("img").src = images[x];
+		  document.getElementById("aud").src = audios[x];
+		  document.getElementById("feature_type_name").innerHTML = names[x];
+	  }
+
+	  var images = [], names = [], audios = [], x = 1;
+	  images[0] = "./low_rev_img/DSB_MFCC_source_0.png";
+	  images[1] = "./low_rev_img/DSB_sp_ver_source_0.png";
+	  
+	  names[0] = "Mod-MFCC";
+	  names[1] = "Speaker Embedding";
+	  
+	  audios[0] = "./low_rev_audio/DSB_MFCC_source_0.wav";
+	  audios[1] = "./low_rev_audio/DSB_sp_ver_source_0.wav";
+
+  </script>
+  
+  
+</head>
+
+<!-- <body onload = "startTimer()"> -->
+<!-- <body class="own-body" onload = "displayNextImage()"> -->
+<body class="own-body">
+
+
+ 
+ <div class="center-content">
+ 
+
+<h1>Ad-Hoc arrays site has been visited <span id="visits"></span> times.</h1> <button onclick="clicked()">Reset!</button>
+
+
+</div>
+
+
+</body>

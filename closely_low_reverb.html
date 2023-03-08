@@ -1,0 +1,289 @@
+<html lang="en">
+
+<head>
+<title>Ad-Hoc Distributed Microphone Clusters</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="style.css">
+
+<script type = "text/javascript">
+
+	function websiteVisits(response) {
+		document.querySelector("#visits").textContent = response.value;
+	}
+	
+	  function displayNextImage() {
+		  document.getElementById("feature_type_button").innerHTML = 'switch to ' + names[x];
+		  x = (x === images.length - 1) ? 0 : x + 1;
+		  document.getElementById("img").src = images[x];
+		  document.getElementById("aud").src = audios[x];
+		  document.getElementById("feature_type_name").innerHTML = names[x];
+	  }
+
+	  var images = [], names = [], audios = [], x = 1;
+	  images[0] = "./closely_low_reverb_img/DSB_MFCC_source_0.png";
+	  images[1] = "./closely_low_reverb_img/DSB_sp_ver_source_0.png";
+	  
+	  names[0] = "Mod-MFCC";
+	  names[1] = "Speaker Embedding";
+	  
+	  audios[0] = "./closely_low_reverb_audio/DSB_MFCC_source_0.wav";
+	  audios[1] = "./closely_low_reverb_audio/DSB_sp_ver_source_0.wav";
+
+  </script>
+  
+  
+</head>
+
+<!-- <body onload = "startTimer()"> -->
+<body class="own-body" onload = "displayNextImage()">
+
+<div class="navbar">
+   <div class="row">
+    <div class="logo" ><img src=".\img\logo_ugent_nl.svg"></div>
+    <div class="banner">
+      <h1 class="closer">ASPIRE</h1>
+      <p class="closer" style="font-size: 65%;">Audio and Signal Processing, Interpretation, and Enhancement @IDLAB</p>
+    </div>
+	 <div>
+	<a href="./index.html"><div class="row"><i class="material-icons">home</i> <div style= "padding: 0px 10px" >Home</div></div></a>
+	<div class="dropdown">
+	<a> <div class="row"> <i class="material-icons">menu</i> <div style= "padding: 0px 10px" >Menu</div></div></a>
+	<div class="dropdown-content">
+		<a href="./low_rev.html">low reverb</a>
+		<a href="./norm_rev.html">normal reverb</a>
+		<a href="./closely_low_reverb.html">closer spaced low reverb</a>
+		<a href="./closely_normal_reverb.html">closely spaced normal reverb</a>
+		<a href="./overlap.html">overlapping critical distances</a>
+	 </div>
+	 </div>
+	 </div>
+  
+  </div>
+</div>
+ 
+ <div class="center-content">
+ 
+ <div>
+<h1>Setup </h1>
+
+For this example, we have a 3x4x3 m room. The reverberation time is 0.3sec. We also have a version of the same room with more reverberant walls in <a href="./closely_normal_reverb.html">the fourth example</a>
+<img class='room-img', src="./closely_low_reverb_img/room_new.png" alt="Room" >
+
+<div>
+<h1>Mod-MFCC Based Clusters </h1>
+<!-- <img class ="cluster-img" src="./closely_low_reverb_img/MFCC_clusters.png" alt="MFCC Clusters image"> -->
+
+
+ <figure >
+ <div class="cluster-row">
+  <div class="cluster-column">
+    <center><b>CLUSTER 1</b></center>
+  </div>
+  <div class="cluster-column">
+   <center><b>CLUSTER 2</b></center>
+  </div>
+  <div class="cluster-column">
+    <center><b>BACKGROUND CLUSTER</b></center>
+  </div>
+</div> 
+
+  <div class="cluster-row">
+  <div class="cluster-column">
+    <img class ="cluster-img", src="./closely_low_reverb_img/MFCC_clusters_0.png" alt="Mod-MFCC-based Clusters image" >
+  </div>
+  <div class="cluster-column">
+   <img class ="cluster-img", src="./closely_low_reverb_img/MFCC_clusters_1.png" alt="Mod-MFCC-based Clusters image" >
+  </div>
+  <div class="cluster-column">
+    <img class ="cluster-img", src="./closely_low_reverb_img/MFCC_clusters_2.png" alt="Mod-MFCC-based Clusters image" >
+  </div>
+</div> 
+  
+  <!-- <figcaption max-width:100px>Fig.1 - Mod-MFCC-based Hard Clusters.</figcaption> -->
+</figure> 
+
+<table class="tb" border="1"id="ref">
+<thead>
+<tr>
+  <th align="center"; width=100px>cluster</th>
+  <th align="center"; width=300px>reference microphone </th>
+  <th align="center"; width=300px>masked reference signal</th>
+  <th align="center"; width=300px>DSB signal</th>
+</tr>
+<tr>
+ <th align="center">1</th>
+  <th align="center">
+     	<img class="spectogram-img", src="./closely_low_reverb_img/8.png" >
+     	<br/>
+     	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/8.wav" type=" audio/wav">
+	</audio> 
+  </th>
+  <th align="center">
+	<img class="spectogram-img", src="./closely_low_reverb_img/mask_MFCC_source_0.png" >
+     	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/mask_MFCC_source_0.wav" type=" audio/wav">
+	</audio>
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/DSB_MFCC_source_0.png" >
+     	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/DSB_MFCC_source_0.wav" type=" audio/wav">
+	</audio>
+  </th>
+  
+</tr>
+
+ <tr>
+    <th align="center">2</th>
+    <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/9.png" >
+	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/9.wav" type=" audio/wav">
+	</audio> 
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/mask_MFCC_source_1.png" >
+     	<br/>
+   	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/mask_MFCC_source_1.wav" type=" audio/wav">
+	</audio>
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/DSB_MFCC_source_1.png" >
+     	<br/>
+    	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/DSB_MFCC_source_1.wav" type=" audio/wav">
+	</audio>
+  </th>
+</tr>
+
+</thead>
+</table>
+
+
+<h1>Speaker Embedding Clusters </h1>
+<!-- <img class ="cluster-img" src="./closely_low_reverb_img/sp_ver_clusters.png" alt="SpVer Clusters image"> -->
+
+ <figure >
+ <div class="cluster-row">
+  <div class="cluster-column">
+    <center><b>CLUSTER 1</b></center>
+  </div>
+  <div class="cluster-column">
+   <center><b>CLUSTER 2</b></center>
+  </div>
+  <div class="cluster-column">
+    <center><b>BACKGROUND CLUSTER</b></center>
+  </div>
+</div> 
+
+  <div class="cluster-row">
+  <div class="cluster-column">
+    <img class ="cluster-img", src="./closely_low_reverb_img/sp_ver_clusters_0.png" alt="SpVer Clusters image" >
+  </div>
+  <div class="cluster-column">
+   <img class ="cluster-img", src="./closely_low_reverb_img/sp_ver_clusters_1.png" alt="SpVer Clusters image" >
+  </div>
+  <div class="cluster-column">
+    <img class ="cluster-img", src="./closely_low_reverb_img/sp_ver_clusters_2.png" alt="SpVer Clusters image" >
+  </div>
+</div> 
+  
+  <!-- <figcaption max-width:100px>Fig.2 - Speaker Embedding Hard Clusters.</figcaption> -->
+</figure> 
+
+
+<table class="tb" border="1"id="ref">
+<thead>
+<tr>
+  <th align="center"; width=100px>cluster</th>
+  <th align="center"; width=300px>reference microphone </th>
+  <th align="center"; width=300px>masked reference signal</th>
+  <th align="center"; width=300px>DSB signal</th>
+</tr>
+<tr>
+ <th align="center">1</th>
+  <th align="center">
+     	<img class="spectogram-img", src="./closely_low_reverb_img/2.png" >
+     	<br/>
+     	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/2.wav" type=" audio/wav">
+	</audio> 
+  </th>
+  <th align="center">
+	<img class="spectogram-img", src="./closely_low_reverb_img/mask_sp_ver_source_0.png" >
+     	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/mask_sp_ver_source_0.wav" type=" audio/wav">
+	</audio>
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/DSB_sp_ver_source_0.png" >
+     	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/DSB_sp_ver_source_0.wav" type=" audio/wav">
+	</audio>
+  </th>
+  
+</tr>
+
+ <tr>
+    <th align="center">2</th>
+    <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/5.png" >
+	<br/>
+	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/5.wav" type=" audio/wav">
+	</audio> 
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/mask_sp_ver_source_1.png" >
+     	<br/>
+   	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/mask_sp_ver_source_1.wav" type=" audio/wav">
+	</audio>
+  </th>
+  <th align="center">
+  	<img class="spectogram-img", src="./closely_low_reverb_img/DSB_sp_ver_source_1.png" >
+     	<br/>
+    	<audio class="spectogram-aud", controls>
+		<source src="./closely_low_reverb_audio/DSB_sp_ver_source_1.wav" type=" audio/wav">
+	</audio>
+  </th>
+</tr>
+
+</thead>
+</table>
+
+<h1>Discussion </h1>
+
+Here both Mod-MFCC based features and the speaker embeding features give good cluster allocations. 
+Note however that the speaker embedding features do result in a bigger cluster for source 1.
+
+<!-- <h1>Closer look at difference in DSB output for cluster 1</h1> -->
+
+<!-- <div class = "example-div"> -->
+
+	<!-- <button type="button" , class="feature-button", onclick="displayNextImage()", id="feature_type_button">Switch</button> -->
+	<!-- <br/> -->
+	<!-- <p class = "double-lined">DSB signals for cluster 1 with  <b id="feature_type_name">Speaker Embedings</b> features</p> -->
+	<!-- <br/> -->
+
+	<!-- <img  class = "example-img", id="img"/> -->
+	<!-- <audio class="spectogram-aud", id= "aud", controls> -->
+		<!-- <source src="./closely_low_reverb_audio/DSB_sp_ver_source_1.wav" type=" audio/wav"> -->
+	<!-- </audio> -->
+<!-- </div> -->
+
+
+
+</div>
+
+
+</body>
